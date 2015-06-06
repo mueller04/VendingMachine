@@ -18,16 +18,21 @@ namespace VendingMachine.BLL.Test
 
         [Test]
         public void WhenNickelIsInsertedDeteremineNickel()
-        { 
-            Assert.AreEqual("Nickel", Coin.DetermineCoin(CoinSizeEnum.micrometer21210, CoinWeightEnum.gram5000));
+        {
+            Assert.AreEqual("Nickel", Coin.DetermineCoin(CoinSizeEnum.micrometer21210, CoinWeightEnum.milligram5000));
         }
 
         [Test]
         public void WhenDimeIsInsertedDetermineDime()
         {
-            Assert.AreEqual("Dime", Coin.DetermineCoin(CoinSizeEnum.mirometer17910, CoinWeightEnum.gram2268));
+            Assert.AreEqual("Dime", Coin.DetermineCoin(CoinSizeEnum.mirometer17910, CoinWeightEnum.milligram2268));
         }
 
+        [Test]
+        public void WhenQuarterIsInsertedDetermineQuarter()
+        {
+            Assert.AreEqual("Quarter", Coin.DetermineCoin(CoinSizeEnum.micrometer24260, CoinWeightEnum.milligram5670));
+        }
 
     }
 }
