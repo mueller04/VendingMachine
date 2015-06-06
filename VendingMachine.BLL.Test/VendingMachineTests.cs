@@ -19,25 +19,35 @@ namespace VendingMachine.BLL.Test
         [Test]
         public void WhenNickelIsInsertedDeteremineNickel()
         {
-            Assert.AreEqual("Nickel", Coin.DetermineCoin(CoinSizeEnum.micrometer21210, CoinWeightEnum.milligram5000));
+            Assert.AreEqual(.05M, Coin.DetermineCoin(CoinSizeEnum.micrometer21210, CoinWeightEnum.milligram5000));
         }
 
         [Test]
         public void WhenDimeIsInsertedDetermineDime()
         {
-            Assert.AreEqual("Dime", Coin.DetermineCoin(CoinSizeEnum.mirometer17910, CoinWeightEnum.milligram2268));
+            Assert.AreEqual(.10M, Coin.DetermineCoin(CoinSizeEnum.mirometer17910, CoinWeightEnum.milligram2268));
         }
 
         [Test]
         public void WhenQuarterIsInsertedDetermineQuarter()
         {
-            Assert.AreEqual("Quarter", Coin.DetermineCoin(CoinSizeEnum.micrometer24260, CoinWeightEnum.milligram5670));
+            Assert.AreEqual(.25M, Coin.DetermineCoin(CoinSizeEnum.micrometer24260, CoinWeightEnum.milligram5670));
         }
 
         [Test]
         public void WhenPennyIsInsertedDetermineInvalid()
         {
-            Assert.AreEqual("Invalid Coin", Coin.DetermineCoin(CoinSizeEnum.micrometer19050, CoinWeightEnum.milligram2500));
+                try 
+	        {	        
+		        decimal value = Coin.DetermineCoin(CoinSizeEnum.micrometer19050, CoinWeightEnum.milligram2500);
+                
+	        }
+	        catch (Exception e)
+	        {
+
+                Assert.AreEqual("Not a valid coin", e.Message);
+	        }
+
         }
 
     }

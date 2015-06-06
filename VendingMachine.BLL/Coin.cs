@@ -11,12 +11,12 @@ namespace VendingMachine.BLL
     public static class Coin
     {
 
-        public static string DetermineCoin(CoinSizeEnum size, CoinWeightEnum weight)
+        public static decimal DetermineCoin(CoinSizeEnum size, CoinWeightEnum weight)
         {
-            if (size == CoinSizeEnum.micrometer21210 && weight == CoinWeightEnum.milligram5000) return "Nickel";
-            if (size == CoinSizeEnum.mirometer17910 && weight == CoinWeightEnum.milligram2268) return "Dime";
-            if (size == CoinSizeEnum.micrometer24260 && weight == CoinWeightEnum.milligram5670) return "Quarter";
-            return "Invalid Coin";      
+            if (size == CoinSizeEnum.micrometer21210 && weight == CoinWeightEnum.milligram5000) return .05M;
+            if (size == CoinSizeEnum.mirometer17910 && weight == CoinWeightEnum.milligram2268) return .10M;
+            if (size == CoinSizeEnum.micrometer24260 && weight == CoinWeightEnum.milligram5670) return .25M;
+            throw new ArgumentException("Not a valid coin");  
       
 
         }

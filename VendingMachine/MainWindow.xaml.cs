@@ -21,10 +21,13 @@ namespace VendingMachine
     /// </summary>
     public partial class MainWindow : Window
     {
+        
+        Transaction transaction = new Transaction();
+
         public MainWindow()
         {
             InitializeComponent();
-
+           
             DisplayTextBox.Text = "INSERT COIN";
 
             InsertCoinBox.Items.Add("Penny");
@@ -45,33 +48,37 @@ namespace VendingMachine
         }
 
 
-        public string coin { get; set; }
+        
         //simulate the reading of a coins size and weight
         public void InsertCoinClick()
         {
-            
+            decimal coinValue = 0M;
+
             if (InsertCoinBox.SelectedItem == null)
             {
-                this.coin = "Select a coin then press Insert Coin";
+                MessageBox.Show("Select a coin then press Insert Coin");
             }
             else if (InsertCoinBox.SelectedItem.ToString() == "Nickel")
             {
-                this.coin = Coin.DetermineCoin(CoinSizeEnum.micrometer21210, CoinWeightEnum.milligram5000);
+                coinValue = Coin.DetermineCoin(CoinSizeEnum.micrometer21210, CoinWeightEnum.milligram5000);
             }
             else if (InsertCoinBox.SelectedItem.ToString() == "Dime")
             {
-                this.coin = Coin.DetermineCoin(CoinSizeEnum.mirometer17910, CoinWeightEnum.milligram2268);
+                coinValue = Coin.DetermineCoin(CoinSizeEnum.mirometer17910, CoinWeightEnum.milligram2268);
             }
             else if (InsertCoinBox.SelectedItem.ToString() == "Quarter")
             {
-                this.coin = Coin.DetermineCoin(CoinSizeEnum.micrometer24260, CoinWeightEnum.milligram5670);
+                coinValue = Coin.DetermineCoin(CoinSizeEnum.micrometer24260, CoinWeightEnum.milligram5670);
             }
             else
             {
-                this.coin = "Error";
+                MessageBox.Show("Invalid Coin");
             }
 
-            MessageBox.Show(coin);
+            transaction.DisplayTotal.Add(coinValue);
+            decimal sum = transaction.DisplayTotal.Sum();
+            DisplayTextBox.Text = sum.ToString("C");
+            
         }
 
 
