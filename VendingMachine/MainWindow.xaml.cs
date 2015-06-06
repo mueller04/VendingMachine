@@ -24,6 +24,7 @@ namespace VendingMachine
         public MainWindow()
         {
             InitializeComponent();
+            InsertCoinBox.Items.Add("Penny");
             InsertCoinBox.Items.Add("Nickel");
             InsertCoinBox.Items.Add("Dime");
             InsertCoinBox.Items.Add("Quarter");

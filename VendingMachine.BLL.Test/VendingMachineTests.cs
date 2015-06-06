@@ -34,5 +34,11 @@ namespace VendingMachine.BLL.Test
             Assert.AreEqual("Quarter", Coin.DetermineCoin(CoinSizeEnum.micrometer24260, CoinWeightEnum.milligram5670));
         }
 
+        [Test]
+        public void WhenPennyIsInsertedDetermineInvalid()
+        {
+            Assert.AreEqual("Invalid Coin", Coin.DetermineCoin(CoinSizeEnum.micrometer19050, CoinWeightEnum.milligram2500));
+        }
+
     }
 }

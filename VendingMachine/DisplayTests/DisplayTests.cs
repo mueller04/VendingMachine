@@ -52,5 +52,15 @@ namespace VendingMachine.DisplayTests
             Assert.AreEqual("Quarter", window.coin);
         }
 
+        [Test]
+        [RequiresSTA]
+        public void WhenInputIsPennyForInsertCoinGetErrorMessage()
+        {
+            MainWindow window = new MainWindow();
+            window.InsertCoinBox.SelectedItem = "Penny";
+            window.InsertCoinClick();
+            Assert.AreEqual("Error", window.coin);
+        }
+
     }
 }
