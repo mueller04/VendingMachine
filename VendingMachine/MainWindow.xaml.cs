@@ -52,7 +52,7 @@ namespace VendingMachine
             }
             else if (InsertCoinBox.SelectedItem.ToString() == "Nickel")
             {
-                this.coin = Coin.DetermineCoin(CoinSizeEnum.micrometer21210, CoinWeightEnum.grams5000);
+                this.coin = Coin.DetermineCoin(CoinSizeEnum.micrometer21210, CoinWeightEnum.gram5000);
             }
             else
             {

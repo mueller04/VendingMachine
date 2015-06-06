@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace VendingMachine.BLL
 {
   
-        public enum CoinSizeEnum { micrometer21210 };
+        public enum CoinSizeEnum { micrometer21210, mirometer17910 };
 
-        public enum CoinWeightEnum { grams5000 };
+        public enum CoinWeightEnum { gram5000, gram2268 };
     
 }
