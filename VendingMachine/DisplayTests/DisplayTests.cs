@@ -11,8 +11,6 @@ namespace VendingMachine.DisplayTests
     class DisplayTests
     {
         
-        
-
         [Test]
         [RequiresSTA]
         public void WhenNoInputForInsertCoinGetMessage()
@@ -60,6 +58,15 @@ namespace VendingMachine.DisplayTests
             window.InsertCoinBox.SelectedItem = "Penny";
             window.InsertCoinClick();
             Assert.AreEqual("Error", window.coin);
+        }
+
+        [Test]
+        [RequiresSTA]
+        public void WhenNoSelectionIsMadeDisplayINSERTCOIN()
+        {
+            MainWindow window = new MainWindow();
+            window.InsertCoinClick();
+            Assert.AreEqual("INSERT COIN", window.DisplayTextBox.Text);
         }
 
     }
