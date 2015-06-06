@@ -76,12 +76,22 @@ namespace VendingMachine
             }
 
             transaction.DisplayTotal.Add(coinValue);
-            decimal sum = transaction.DisplayTotal.Sum();
-            DisplayTextBox.Text = sum.ToString("C");
-            
+            string sum = transaction.DisplayTotal.Sum().ToString("C");
+            UpdateDisplayTotal(sum);
         }
 
-
+        private void UpdateDisplayTotal(string message)
+        {
+            if (message == "$0.00")
+            {
+                DisplayTextBox.Text = "INSERT COIN";
+            }
+            else
+            {
+                DisplayTextBox.Text = message;
+            }
+            
+        }
 
 
 

@@ -37,14 +37,12 @@ namespace VendingMachine.BLL.Test
         [Test]
         public void WhenPennyIsInsertedDetermineInvalid()
         {
-                try 
+            try 
 	        {	        
-		        decimal value = Coin.DetermineCoin(CoinSizeEnum.micrometer19050, CoinWeightEnum.milligram2500);
-                
+		        decimal value = Coin.DetermineCoin(CoinSizeEnum.micrometer19050, CoinWeightEnum.milligram2500); 
 	        }
 	        catch (Exception e)
 	        {
-
                 Assert.AreEqual("Not a valid coin", e.Message);
 	        }
 

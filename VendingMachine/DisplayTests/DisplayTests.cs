@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VendingMachine.BLL;
 
 namespace VendingMachine.DisplayTests
 {
@@ -55,9 +56,13 @@ namespace VendingMachine.DisplayTests
         public void WhenInputIsPennyForInsertCoinDoNotIncreaseBalance()
         {
             MainWindow window = new MainWindow();
+
+            window.InsertCoinBox.SelectedItem = "Dime";
+            window.InsertCoinClick();
             window.InsertCoinBox.SelectedItem = "Penny";
             window.InsertCoinClick();
-            Assert.AreEqual("$0.00", window.DisplayTextBox.Text);
+
+            Assert.AreEqual("$0.10", window.DisplayTextBox.Text);
         }
 
         [Test]
@@ -68,7 +73,14 @@ namespace VendingMachine.DisplayTests
             Assert.AreEqual("INSERT COIN", window.DisplayTextBox.Text);
         }
 
-        
-
+        [Test]
+        [RequiresSTA]
+        public void WhenInputIsPennyDisplayINSERTCOIN()
+        {
+            MainWindow window = new MainWindow();
+            window.InsertCoinBox.SelectedItem = "Penny";
+            window.InsertCoinClick();
+            Assert.AreEqual("INSERT COIN", window.DisplayTextBox.Text);
+        }
     }
 }
