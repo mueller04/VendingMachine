@@ -34,12 +34,22 @@ namespace VendingMachine.DisplayTests
 
         [Test]
         [RequiresSTA]
-        public void WhenINputIsDimeForInsertCoinGetMessage()
+        public void WhenInputIsDimeForInsertCoinGetMessage()
         {
             MainWindow window = new MainWindow();
             window.InsertCoinBox.SelectedItem = "Dime";
             window.InsertCoinClick();
             Assert.AreEqual("Dime", window.coin);
+        }
+
+        [Test]
+        [RequiresSTA]
+        public void WhenInputIsQuarterForInsertCoinGetMessage()
+        {
+            MainWindow window = new MainWindow();
+            window.InsertCoinBox.SelectedItem = "Quarter";
+            window.InsertCoinClick();
+            Assert.AreEqual("Quarter", window.coin);
         }
 
     }

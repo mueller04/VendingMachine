@@ -58,6 +58,10 @@ namespace VendingMachine
             {
                 this.coin = Coin.DetermineCoin(CoinSizeEnum.mirometer17910, CoinWeightEnum.milligram2268);
             }
+            else if (InsertCoinBox.SelectedItem.ToString() == "Quarter")
+            {
+                this.coin = Coin.DetermineCoin(CoinSizeEnum.micrometer24260, CoinWeightEnum.milligram5670);
+            }
             else
             {
                 this.coin = "Error";
