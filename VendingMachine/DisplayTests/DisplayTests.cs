@@ -11,6 +11,7 @@ namespace VendingMachine.DisplayTests
     class DisplayTests
     {
         
+        
 
         [Test]
         [RequiresSTA]
@@ -31,6 +32,15 @@ namespace VendingMachine.DisplayTests
             Assert.AreEqual("Nickel", window.coin);
         }
 
+        [Test]
+        [RequiresSTA]
+        public void WhenINputIsDimeForInsertCoinGetMessage()
+        {
+            MainWindow window = new MainWindow();
+            window.InsertCoinBox.SelectedItem = "Dime";
+            window.InsertCoinClick();
+            Assert.AreEqual("Dime", window.coin);
+        }
 
     }
 }

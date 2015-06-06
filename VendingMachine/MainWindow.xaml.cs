@@ -42,7 +42,7 @@ namespace VendingMachine
 
 
         public string coin { get; set; }
-
+        //simulate the reading of a coins size and weight
         public void InsertCoinClick()
         {
             
@@ -53,6 +53,10 @@ namespace VendingMachine
             else if (InsertCoinBox.SelectedItem.ToString() == "Nickel")
             {
                 this.coin = Coin.DetermineCoin(CoinSizeEnum.micrometer21210, CoinWeightEnum.gram5000);
+            }
+            else if (InsertCoinBox.SelectedItem.ToString() == "Dime")
+            {
+                this.coin = Coin.DetermineCoin(CoinSizeEnum.mirometer17910, CoinWeightEnum.gram2268);
             }
             else
             {
