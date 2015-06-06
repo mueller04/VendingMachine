@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VendingMachine;
 
 
 namespace VendingMachine.BLL.Test
@@ -17,11 +18,12 @@ namespace VendingMachine.BLL.Test
 
         [Test]
         public void WhenNickelIsInsertedDeteremineNickel()
-        {
-            Coin coin = new Coin();
-            Assert.AreEqual("Nickel", coin.DetermineCoin(CoinSizeEnum.micrometer21210, CoinWeightEnum.grams5000));
-        
+        { 
+            Assert.AreEqual("Nickel", Coin.DetermineCoin(CoinSizeEnum.micrometer21210, CoinWeightEnum.grams5000));
         }
+
+
+
 
     }
 }
