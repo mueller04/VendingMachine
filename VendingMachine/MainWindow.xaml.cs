@@ -72,7 +72,7 @@ namespace VendingMachine
             else
             {
                 MessageBox.Show("Invalid Coin");
-                UpdateReturnTotal();
+                UpdateReturnTotal(.01M);
             }
 
             transaction.AddToDisplayTotal(coinValue);
@@ -97,9 +97,9 @@ namespace VendingMachine
                 txtDisplay.Text = message.ToString();
         }
 
-        private void UpdateReturnTotal()
+        private void UpdateReturnTotal(decimal add)
         {
-            transaction.AddToReturnTotal(.01M);
+            transaction.AddToReturnTotal(add);
             txtCoinReturn.Text = transaction.ReturnTotal.ToString("C");
         }
 
@@ -141,6 +141,7 @@ namespace VendingMachine
                 if (transaction.ProductVended(transaction.Products[index]))
                 {
                     UpdateDisplayTotal("THANK YOU");
+                    UpdateReturnTotal(0);
                 } else
                 {
                     string message = ("PRICE " + transaction.Products[index].Price.ToString("C"));

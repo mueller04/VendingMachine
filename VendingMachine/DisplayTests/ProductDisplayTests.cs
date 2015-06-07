@@ -74,5 +74,15 @@ namespace VendingMachine.DisplayTests
             Assert.AreEqual("PRICE $1.00", window.txtDisplay.Text);
         }
 
+        [Test]
+        [RequiresSTA]
+        public void WhenProductIsChosenChangeIsGiven()
+        {
+            MainWindow window = new MainWindow();
+            window.transaction.DisplayTotal = 1.4M;
+            window.ProductClick("cola");
+            Assert.AreEqual("$0.40", window.txtCoinReturn.Text);
+        }
+
     }
 }

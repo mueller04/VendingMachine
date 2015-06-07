@@ -40,7 +40,6 @@ namespace VendingMachine.BLL.Test
             transaction.ProductVended(transaction.Products[0]);
             Assert.AreEqual(0, transaction.DisplayTotal);
             Assert.AreEqual(.60M, transaction.ReturnTotal);
-
         }
 
     }
