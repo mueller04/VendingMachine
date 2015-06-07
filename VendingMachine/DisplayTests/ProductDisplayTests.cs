@@ -76,12 +76,33 @@ namespace VendingMachine.DisplayTests
 
         [Test]
         [RequiresSTA]
-        public void WhenProductIsChosenChangeIsGiven()
+        public void WhenProductIsChosenChangeIsGivenUI()
         {
             MainWindow window = new MainWindow();
             window.transaction.DisplayTotal = 1.4M;
             window.ProductClick("cola");
             Assert.AreEqual("$0.40", window.txtCoinReturn.Text);
+        }
+
+        [Test]
+        [RequiresSTA]
+        public void WhenSoldOutProductIsChosenThenResetDisplayCurrentBalanceUI()
+        {
+            MainWindow window = new MainWindow();
+            window.transaction.DisplayTotal = 1.5M;
+            window.ProductClick("candy");
+            window.ResetDisplay();
+            Assert.AreEqual("$1.50", window.txtDisplay.Text);
+        }
+
+        [Test]
+        [RequiresSTA]
+        public void WhenSoldOutProductIsChosenThenResetDisplayINSERTCOINUI()
+        {
+            MainWindow window = new MainWindow();
+            window.ProductClick("candy");
+            window.ResetDisplay();
+            Assert.AreEqual("INSERT COIN", window.txtDisplay.Text);
         }
 
     }

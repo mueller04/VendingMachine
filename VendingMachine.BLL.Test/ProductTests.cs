@@ -59,5 +59,7 @@ namespace VendingMachine.BLL.Test
             Assert.AreEqual("SOLD OUT", transaction.ProductVended(transaction.Products[2]));
         }
 
+        
+
     }
 }
