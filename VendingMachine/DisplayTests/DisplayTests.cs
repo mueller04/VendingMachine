@@ -26,9 +26,9 @@ namespace VendingMachine.DisplayTests
         public void WhenInputIsNickelForInsertCoinAddToDisplay()
         {
             MainWindow window = new MainWindow();
-            window.InsertCoinBox.SelectedItem = "Nickel";
+            window.lstInsertCoin.SelectedItem = "Nickel";
             window.InsertCoinClick();
-            Assert.AreEqual("$0.05", window.DisplayTextBox.Text);
+            Assert.AreEqual("$0.05", window.txtDisplay.Text);
         }
 
         [Test]
@@ -36,9 +36,9 @@ namespace VendingMachine.DisplayTests
         public void WhenInputIsDimeForInsertCoinAddToDisplay()
         {
             MainWindow window = new MainWindow();
-            window.InsertCoinBox.SelectedItem = "Dime";
+            window.lstInsertCoin.SelectedItem = "Dime";
             window.InsertCoinClick();
-            Assert.AreEqual("$0.10", window.DisplayTextBox.Text);
+            Assert.AreEqual("$0.10", window.txtDisplay.Text);
         }
 
         [Test]
@@ -46,9 +46,9 @@ namespace VendingMachine.DisplayTests
         public void WhenInputIsQuarterForInsertCoinAddToDisplay()
         {
             MainWindow window = new MainWindow();
-            window.InsertCoinBox.SelectedItem = "Quarter";
+            window.lstInsertCoin.SelectedItem = "Quarter";
             window.InsertCoinClick();
-            Assert.AreEqual("$0.25", window.DisplayTextBox.Text);
+            Assert.AreEqual("$0.25", window.txtDisplay.Text);
         }
 
         [Test]
@@ -57,12 +57,12 @@ namespace VendingMachine.DisplayTests
         {
             MainWindow window = new MainWindow();
 
-            window.InsertCoinBox.SelectedItem = "Dime";
+            window.lstInsertCoin.SelectedItem = "Dime";
             window.InsertCoinClick();
-            window.InsertCoinBox.SelectedItem = "Penny";
+            window.lstInsertCoin.SelectedItem = "Penny";
             window.InsertCoinClick();
 
-            Assert.AreEqual("$0.10", window.DisplayTextBox.Text);
+            Assert.AreEqual("$0.10", window.txtDisplay.Text);
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace VendingMachine.DisplayTests
         public void WhenNoSelectionIsMadeDisplayINSERTCOIN()
         {
             MainWindow window = new MainWindow();
-            Assert.AreEqual("INSERT COIN", window.DisplayTextBox.Text);
+            Assert.AreEqual("INSERT COIN", window.txtDisplay.Text);
         }
 
         [Test]
@@ -78,9 +78,19 @@ namespace VendingMachine.DisplayTests
         public void WhenInputIsPennyDisplayINSERTCOIN()
         {
             MainWindow window = new MainWindow();
-            window.InsertCoinBox.SelectedItem = "Penny";
+            window.lstInsertCoin.SelectedItem = "Penny";
             window.InsertCoinClick();
-            Assert.AreEqual("INSERT COIN", window.DisplayTextBox.Text);
+            Assert.AreEqual("INSERT COIN", window.txtDisplay.Text);
+        }
+
+        [Test]
+        [RequiresSTA]
+        public void WhenInputIsPennyReturnCoin()
+        {
+            MainWindow window = new MainWindow();
+            window.lstInsertCoin.SelectedItem = "Penny";
+            window.InsertCoinClick();
+            Assert.AreEqual("1 Coins", window.txtCoinReturn.Text);
         }
     }
 }

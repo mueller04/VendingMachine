@@ -27,13 +27,13 @@ namespace VendingMachine
         public MainWindow()
         {
             InitializeComponent();
-           
-            DisplayTextBox.Text = "INSERT COIN";
 
-            InsertCoinBox.Items.Add("Penny");
-            InsertCoinBox.Items.Add("Nickel");
-            InsertCoinBox.Items.Add("Dime");
-            InsertCoinBox.Items.Add("Quarter");
+            txtDisplay.Text = "INSERT COIN";
+
+            lstInsertCoin.Items.Add("Penny");
+            lstInsertCoin.Items.Add("Nickel");
+            lstInsertCoin.Items.Add("Dime");
+            lstInsertCoin.Items.Add("Quarter");
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -41,12 +41,10 @@ namespace VendingMachine
 
         }
 
-
         private void InsertCoin_Click(object sender, RoutedEventArgs e)
         {
             InsertCoinClick();
         }
-
 
         
         //simulate the reading of a coins size and weight
@@ -54,25 +52,26 @@ namespace VendingMachine
         {
             decimal coinValue = 0M;
 
-            if (InsertCoinBox.SelectedItem == null)
+            if (lstInsertCoin.SelectedItem == null)
             {
                 MessageBox.Show("Select a coin then press Insert Coin");
             }
-            else if (InsertCoinBox.SelectedItem.ToString() == "Nickel")
+            else if (lstInsertCoin.SelectedItem.ToString() == "Nickel")
             {
                 coinValue = Coin.DetermineCoin(CoinSizeEnum.micrometer21210, CoinWeightEnum.milligram5000);
             }
-            else if (InsertCoinBox.SelectedItem.ToString() == "Dime")
+            else if (lstInsertCoin.SelectedItem.ToString() == "Dime")
             {
                 coinValue = Coin.DetermineCoin(CoinSizeEnum.mirometer17910, CoinWeightEnum.milligram2268);
             }
-            else if (InsertCoinBox.SelectedItem.ToString() == "Quarter")
+            else if (lstInsertCoin.SelectedItem.ToString() == "Quarter")
             {
                 coinValue = Coin.DetermineCoin(CoinSizeEnum.micrometer24260, CoinWeightEnum.milligram5670);
             }
             else
             {
                 MessageBox.Show("Invalid Coin");
+                UpdateReturnTotal();
             }
 
             transaction.DisplayTotal.Add(coinValue);
@@ -84,15 +83,19 @@ namespace VendingMachine
         {
             if (message == "$0.00")
             {
-                DisplayTextBox.Text = "INSERT COIN";
+                txtDisplay.Text = "INSERT COIN";
             }
             else
             {
-                DisplayTextBox.Text = message;
+                txtDisplay.Text = message;
             }
-            
         }
 
+        private void UpdateReturnTotal()
+        {
+            transaction.ReturnTotal.Add(1);
+            txtCoinReturn.Text = String.Format("{0} Coins", transaction.ReturnTotal.Sum().ToString());
+        }
 
 
     }
