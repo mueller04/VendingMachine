@@ -55,14 +55,14 @@ namespace VendingMachine.BLL
 
         public bool ProductVended(Product product)
         {
-            if (product.Price < DisplayTotal)
-            {
-                DisplayTotal -= product.Price;
-                product.OnHand--;
-                return true;
-            } else
+            if (product.Price > DisplayTotal)
             {
                 return false;
+            } else
+            {         
+                DisplayTotal -= product.Price;
+                product.OnHand--;
+                return true; 
             }
 
 

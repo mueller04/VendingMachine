@@ -31,6 +31,5 @@ namespace VendingMachine.BLL.Test
             Assert.AreEqual(5, transaction.Products[2].OnHand);
         }
 
-
     }
 }
