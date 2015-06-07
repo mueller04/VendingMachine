@@ -53,11 +53,11 @@ namespace VendingMachine.BLL
             ReturnTotal -= price;
         }
 
-        public bool ProductVended(Product product, decimal balance)
+        public bool ProductVended(Product product)
         {
-            if (product.Price < balance)
+            if (product.Price < DisplayTotal)
             {
-                DisplayTotal -= balance;
+                DisplayTotal -= product.Price;
                 product.OnHand--;
                 return true;
             } else
