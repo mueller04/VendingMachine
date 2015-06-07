@@ -77,10 +77,10 @@ namespace VendingMachine
 
             transaction.AddToDisplayTotal(coinValue);
             string sum = transaction.DisplayTotal.ToString("C");
-            UpdateDisplayTotal(sum);
+            CoinUpdateDisplayTotal(sum);
         }
 
-        private void UpdateDisplayTotal(string message)
+        private void CoinUpdateDisplayTotal(string message)
         {
             if (message == "$0.00")
             {
@@ -88,9 +88,17 @@ namespace VendingMachine
             }
             else
             {
-                txtDisplay.Text = message;
+                txtDisplay.Text = message.ToString();
             }
         }
+
+        private void UpdateDisplayTotal(string message, int delay)
+        {
+                txtDisplay.Text = message.ToString();
+        }
+
+
+
 
         private void UpdateReturnTotal()
         {
@@ -133,7 +141,7 @@ namespace VendingMachine
                 MessageBox.Show("Could not find product.");
             } else
             {
-                bool success = transaction.ProductVended(transaction.Products[index]);
+                if (transaction.ProductVended(transaction.Products[index])) UpdateDisplayTotal("THANK YOU", 1000);
             }
         }
 

@@ -32,7 +32,15 @@ namespace VendingMachine.DisplayTests
             Assert.AreEqual(5, window.transaction.Products[0].OnHand);
         }
 
-
+        [Test]
+        [RequiresSTA]
+        public void WhenBalanceHighEnoughDisplayTHANKYOUUI()
+        {
+            MainWindow window = new MainWindow();
+            window.transaction.DisplayTotal = 1.2M;
+            window.ProductClick("cola");
+            Assert.AreEqual("THANK YOU", window.txtDisplay.Text);
+        }
 
     }
 }
