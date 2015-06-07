@@ -118,13 +118,26 @@ namespace VendingMachine.DisplayTests
 
         [Test]
         [RequiresSTA]
-        public void WhenPickupChangeisClickedClearListandBoxUI()
+        public void WhenPickupChangeisClickedClearReturnTotalandBoxUI()
         {
             MainWindow window = new MainWindow();
             window.lstInsertCoin.SelectedItem = "Penny";
             window.InsertCoinClick();
             window.PickupChangeClick();
             Assert.AreEqual(0, window.transaction.ReturnTotal);
+            Assert.AreEqual("Coin Return Slot", window.txtCoinReturn.Text);
+        }
+
+        [Test]
+        [RequiresSTA]
+        public void WhenPickupChangeisClickedClearDisplayTotalandDisplayBoxUI()
+        {
+            MainWindow window = new MainWindow();
+            window.lstInsertCoin.SelectedItem = "Quarter";
+            window.InsertCoinClick();
+            window.PickupChangeClick();
+            Assert.AreEqual(0, window.transaction.ReturnTotal);
+            Assert.AreEqual("INSERT COIN", window.txtDisplay.Text);
             Assert.AreEqual("Coin Return Slot", window.txtCoinReturn.Text);
         }
 

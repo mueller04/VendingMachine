@@ -112,6 +112,8 @@ namespace VendingMachine
         {
             txtCoinReturn.Text = "Coin Return Slot";
             transaction.ReturnTotal = 0M;
+            transaction.DisplayTotal = 0M;
+            ResetDisplay();
         }
 
         private void btnCola_Click(object sender, RoutedEventArgs e)
