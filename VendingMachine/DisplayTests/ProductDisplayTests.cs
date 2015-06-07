@@ -17,7 +17,8 @@ namespace VendingMachine.DisplayTests
             MainWindow window = new MainWindow();
             window.transaction.DisplayTotal = 1.2M;
             window.ProductClick("cola");
-            Assert.AreEqual(.2M, window.transaction.DisplayTotal);
+            Assert.AreEqual(0, window.transaction.DisplayTotal);
+            Assert.AreEqual(.2M, window.transaction.ReturnTotal);
             Assert.AreEqual(4, window.transaction.Products[0].OnHand);
         }
 
@@ -60,7 +61,7 @@ namespace VendingMachine.DisplayTests
             window.transaction.DisplayTotal = 1.2M;
             window.ProductClick("cola");
             window.ResetDisplay();
-            Assert.AreEqual("$0.20", window.txtDisplay.Text);
+            Assert.AreEqual("INSERT COIN", window.txtDisplay.Text);
         }
 
         [Test]

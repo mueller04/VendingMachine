@@ -60,12 +60,26 @@ namespace VendingMachine.BLL
                 return false;
             } else
             {         
-                DisplayTotal -= product.Price;
-                product.OnHand--;
+                ProcessChange(product);
+                ProcessInventory(product);
                 return true; 
             }
 
 
+
+        }
+
+        private void ProcessChange(Product product)
+        {
+            DisplayTotal -= product.Price;
+            ReturnTotal += DisplayTotal;
+            DisplayTotal = 0;
+            
+        }
+
+        private void ProcessInventory(Product product)
+        {
+            product.OnHand--;
         }
         
     }

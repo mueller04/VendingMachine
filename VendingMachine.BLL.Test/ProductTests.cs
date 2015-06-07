@@ -17,8 +17,9 @@ namespace VendingMachine.BLL.Test
             Transaction transaction = new Transaction();
             transaction.DisplayTotal = .70M;
             Assert.AreEqual(true, transaction.ProductVended(transaction.Products[2]));
-            Assert.AreEqual(.05M, transaction.DisplayTotal);
+            Assert.AreEqual(0, transaction.DisplayTotal);
             Assert.AreEqual(4, transaction.Products[2].OnHand);
+            Assert.AreEqual(.05M, transaction.ReturnTotal);
         }
 
         [Test]
@@ -29,6 +30,17 @@ namespace VendingMachine.BLL.Test
             Assert.AreEqual(false, transaction.ProductVended(transaction.Products[2]));
             Assert.AreEqual(.60M, transaction.DisplayTotal);
             Assert.AreEqual(5, transaction.Products[2].OnHand);
+        }
+
+        [Test]
+        public void WhenProductSelectedMakeChange()
+        {
+            Transaction transaction = new Transaction();
+            transaction.DisplayTotal = 1.60M;
+            transaction.ProductVended(transaction.Products[0]);
+            Assert.AreEqual(0, transaction.DisplayTotal);
+            Assert.AreEqual(.60M, transaction.ReturnTotal);
+
         }
 
     }
