@@ -7,7 +7,7 @@
         <Button x:Name="Insert_Coin" Content="Insert Coin" HorizontalAlignment="Left" Margin="17,129,0,0" VerticalAlignment="Top" Width="120" Click="InsertCoin_Click"/>
         <TextBox x:Name="txtDisplay" HorizontalAlignment="Left" Height="23" Margin="17,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
         <TextBox x:Name="txtCoinReturn" HorizontalAlignment="Left" Height="23" Margin="17,233,0,0" TextWrapping="Wrap" Text="Coin Return Slot" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="CoinReturnbtn" Content="Pickup Change" HorizontalAlignment="Left" Margin="17,270,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="CoinReturnbtn" Content="Pickup Change" HorizontalAlignment="Left" Margin="17,270,0,0" VerticalAlignment="Top" Width="120" Click="CoinReturnbtn_Click"/>
 
     </Grid>
 </Window>

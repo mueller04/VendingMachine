@@ -92,5 +92,40 @@ namespace VendingMachine.DisplayTests
             window.InsertCoinClick();
             Assert.AreEqual("1 Coins", window.txtCoinReturn.Text);
         }
+
+        [Test]
+        [RequiresSTA]
+        public void WhenInputIsTwoPenniesReturnCoin()
+        {
+            MainWindow window = new MainWindow();
+            window.lstInsertCoin.SelectedItem = "Penny";
+            window.InsertCoinClick();
+            window.InsertCoinClick();
+            Assert.AreEqual("2 Coins", window.txtCoinReturn.Text);
+        }        
+        
+        
+        [Test]
+        [RequiresSTA]
+        public void WhenPickupChangeisClickedClearBox()
+        {
+            MainWindow window = new MainWindow();
+            window.lstInsertCoin.SelectedItem = "Penny";
+            window.InsertCoinClick();
+            window.PickupChangeClick();
+            Assert.AreEqual("Coin Return Slot", window.txtCoinReturn.Text);
+        }
+
+        [Test]
+        [RequiresSTA]
+        public void WhenPickupChangeisClickedClearList()
+        {
+            MainWindow window = new MainWindow();
+            window.lstInsertCoin.SelectedItem = "Penny";
+            window.InsertCoinClick();
+            window.PickupChangeClick();
+            Assert.AreEqual(0, window.transaction.ReturnTotal.Count());
+        }
+        
     }
 }

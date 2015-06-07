@@ -21,14 +21,16 @@ namespace VendingMachine
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Transaction transaction { get; set; }
         
-        Transaction transaction = new Transaction();
 
         public MainWindow()
         {
             InitializeComponent();
+            transaction = new Transaction();
 
             txtDisplay.Text = "INSERT COIN";
+            txtCoinReturn.Text = "Coin Return Slot";
 
             lstInsertCoin.Items.Add("Penny");
             lstInsertCoin.Items.Add("Nickel");
@@ -95,6 +97,17 @@ namespace VendingMachine
         {
             transaction.ReturnTotal.Add(1);
             txtCoinReturn.Text = String.Format("{0} Coins", transaction.ReturnTotal.Sum().ToString());
+        }
+
+        private void CoinReturnbtn_Click(object sender, RoutedEventArgs e)
+        {
+            PickupChangeClick();
+        }
+
+        public void PickupChangeClick()
+        {
+            txtCoinReturn.Text = "Coin Return Slot";
+            transaction.ReturnTotal.Clear();
         }
 
 
