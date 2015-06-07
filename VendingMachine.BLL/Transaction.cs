@@ -29,7 +29,7 @@ namespace VendingMachine.BLL
             {
                 Name = "candy",
                 Price = .65M,
-                OnHand = 5
+                OnHand = 0
             }
         };
 
@@ -56,6 +56,9 @@ namespace VendingMachine.BLL
         public bool ProductVended(Product product)
         {
             if (product.Price > DisplayTotal)
+            {
+                return false;
+            } else if (product.OnHand <= 0)
             {
                 return false;
             } else

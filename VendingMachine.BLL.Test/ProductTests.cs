@@ -16,20 +16,20 @@ namespace VendingMachine.BLL.Test
         {
             Transaction transaction = new Transaction();
             transaction.DisplayTotal = .70M;
-            Assert.AreEqual(true, transaction.ProductVended(transaction.Products[2]));
+            Assert.AreEqual(true, transaction.ProductVended(transaction.Products[1]));
             Assert.AreEqual(0, transaction.DisplayTotal);
-            Assert.AreEqual(4, transaction.Products[2].OnHand);
-            Assert.AreEqual(.05M, transaction.ReturnTotal);
+            Assert.AreEqual(4, transaction.Products[1].OnHand);
+            Assert.AreEqual(.20M, transaction.ReturnTotal);
         }
 
         [Test]
         public void WhenProductSelectedAndBalanceTooLow()
         {
             Transaction transaction = new Transaction();
-            transaction.DisplayTotal = .60M;
-            Assert.AreEqual(false, transaction.ProductVended(transaction.Products[2]));
-            Assert.AreEqual(.60M, transaction.DisplayTotal);
-            Assert.AreEqual(5, transaction.Products[2].OnHand);
+            transaction.DisplayTotal = .40M;
+            Assert.AreEqual(false, transaction.ProductVended(transaction.Products[1]));
+            Assert.AreEqual(.40M, transaction.DisplayTotal);
+            Assert.AreEqual(5, transaction.Products[1].OnHand);
         }
 
         [Test]
@@ -41,6 +41,17 @@ namespace VendingMachine.BLL.Test
             Assert.AreEqual(0, transaction.DisplayTotal);
             Assert.AreEqual(.60M, transaction.ReturnTotal);
         }
+
+        [Test]
+        public void WhenProductSelectedAndThereExistsNoInventoryVendFails()
+        {
+            Transaction transaction = new Transaction();
+            transaction.DisplayTotal = 4.00M;
+            Assert.AreEqual(false, transaction.ProductVended(transaction.Products[2]));
+            Assert.AreEqual(4.00M, transaction.DisplayTotal);
+            Assert.AreEqual(0, transaction.Products[2].OnHand);
+        }
+
 
     }
 }
