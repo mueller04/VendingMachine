@@ -21,6 +21,17 @@ namespace VendingMachine.DisplayTests
             Assert.AreEqual(4, window.transaction.Products[0].OnHand);
         }
 
+        [Test]
+        [RequiresSTA]
+        public void WhenBalanceIsTooLowFailUpdateUI()
+        {
+            MainWindow window = new MainWindow();
+            window.transaction.DisplayTotal = .9M;
+            window.ProductClick("cola");
+            Assert.AreEqual(.9M, window.transaction.DisplayTotal);
+            Assert.AreEqual(5, window.transaction.Products[0].OnHand);
+        }
+
 
 
     }
