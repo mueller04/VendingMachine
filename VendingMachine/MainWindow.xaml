@@ -8,6 +8,9 @@
         <TextBox x:Name="txtDisplay" HorizontalAlignment="Left" Height="23" Margin="17,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
         <TextBox x:Name="txtCoinReturn" HorizontalAlignment="Left" Height="23" Margin="17,233,0,0" TextWrapping="Wrap" Text="Coin Return Slot" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="CoinReturnbtn" Content="Pickup Change" HorizontalAlignment="Left" Margin="17,270,0,0" VerticalAlignment="Top" Width="120" Click="CoinReturnbtn_Click"/>
+        <Button x:Name="btnCola" Content="cola $1.00" HorizontalAlignment="Left" Margin="188,45,0,0" VerticalAlignment="Top" Width="75" Height="60" IsCancel="True" Click="btnCola_Click"/>
+        <Button x:Name="btnCandy" Content="candy $0.65" HorizontalAlignment="Left" Margin="398,45,0,0" VerticalAlignment="Top" Width="75" Height="60" Click="btnCandy_Click"/>
+        <Button x:Name="btnChips" Content="chips $0.50" HorizontalAlignment="Left" Margin="292,45,0,0" VerticalAlignment="Top" Width="75" Height="60" IsDefault="True" Click="btnChips_Click"/>
 
     </Grid>
 </Window>

@@ -14,7 +14,7 @@ namespace VendingMachine.DisplayTests
         
         [Test]
         [RequiresSTA]
-        public void WhenInputIsNickelForInsertCoinAddToDisplay()
+        public void WhenInputIsNickelForInsertCoinAddToDisplayUI()
         {
             MainWindow window = new MainWindow();
             window.lstInsertCoin.SelectedItem = "Nickel";
@@ -24,7 +24,7 @@ namespace VendingMachine.DisplayTests
 
         [Test]
         [RequiresSTA]
-        public void WhenInputIsDimeForInsertCoinAddToDisplay()
+        public void WhenInputIsDimeForInsertCoinAddToDisplayUI()
         {
             MainWindow window = new MainWindow();
             window.lstInsertCoin.SelectedItem = "Dime";
@@ -34,7 +34,7 @@ namespace VendingMachine.DisplayTests
 
         [Test]
         [RequiresSTA]
-        public void WhenInputIsQuarterForInsertCoinAddToDisplay()
+        public void WhenInputIsQuarterForInsertCoinAddToDisplayUI()
         {
             MainWindow window = new MainWindow();
             window.lstInsertCoin.SelectedItem = "Quarter";
@@ -44,7 +44,7 @@ namespace VendingMachine.DisplayTests
 
         [Test]
         [RequiresSTA]
-        public void WhenInputIsPennyForInsertCoinDoNotIncreaseBalance()
+        public void WhenInputIsPennyForInsertCoinDoNotIncreaseBalanceUI()
         {
             MainWindow window = new MainWindow();
 
@@ -58,7 +58,7 @@ namespace VendingMachine.DisplayTests
 
         [Test]
         [RequiresSTA]
-        public void WhenNoSelectionIsMadeDisplayINSERTCOIN()
+        public void WhenNoSelectionIsMadeDisplayINSERTCOINUI()
         {
             MainWindow window = new MainWindow();
             Assert.AreEqual("INSERT COIN", window.txtDisplay.Text);
@@ -66,7 +66,7 @@ namespace VendingMachine.DisplayTests
 
         [Test]
         [RequiresSTA]
-        public void WhenInputIsPennyDisplayINSERTCOIN()
+        public void WhenInputIsPennyDisplayINSERTCOINUI()
         {
             MainWindow window = new MainWindow();
             window.lstInsertCoin.SelectedItem = "Penny";
@@ -76,7 +76,7 @@ namespace VendingMachine.DisplayTests
 
         [Test]
         [RequiresSTA]
-        public void WhenInputIsPennyReturnCoin()
+        public void WhenInputIsPennyReturnCoinUI()
         {
             MainWindow window = new MainWindow();
             window.lstInsertCoin.SelectedItem = "Penny";
@@ -86,7 +86,7 @@ namespace VendingMachine.DisplayTests
 
         [Test]
         [RequiresSTA]
-        public void WhenInputIsTwoPenniesReturnCoin()
+        public void WhenInputIsTwoPenniesReturnCoinUI()
         {
             MainWindow window = new MainWindow();
             window.lstInsertCoin.SelectedItem = "Penny";
@@ -98,25 +98,36 @@ namespace VendingMachine.DisplayTests
         
         [Test]
         [RequiresSTA]
-        public void WhenPickupChangeisClickedClearBox()
+        public void WhenPickupChangeisClickedClearBoxUI()
         {
             MainWindow window = new MainWindow();
-            window.lstInsertCoin.SelectedItem = "Penny";
-            window.InsertCoinClick();
+            window.txtCoinReturn.Text = "$0.50";
             window.PickupChangeClick();
             Assert.AreEqual("Coin Return Slot", window.txtCoinReturn.Text);
         }
 
         [Test]
         [RequiresSTA]
-        public void WhenPickupChangeisClickedClearList()
+        public void WhenPickupChangeisClickedClearListUI()
+        {
+            MainWindow window = new MainWindow();
+            window.transaction.ReturnTotal = .50M;
+            window.PickupChangeClick();
+            Assert.AreEqual(0, window.transaction.ReturnTotal);
+        }
+
+        [Test]
+        [RequiresSTA]
+        public void WhenPickupChangeisClickedClearListandBoxUI()
         {
             MainWindow window = new MainWindow();
             window.lstInsertCoin.SelectedItem = "Penny";
             window.InsertCoinClick();
             window.PickupChangeClick();
             Assert.AreEqual(0, window.transaction.ReturnTotal);
+            Assert.AreEqual("Coin Return Slot", window.txtCoinReturn.Text);
         }
+
         
     }
 }

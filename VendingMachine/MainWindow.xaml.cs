@@ -109,6 +109,34 @@ namespace VendingMachine
             transaction.ReturnTotal = 0M;
         }
 
+        private void btnCola_Click(object sender, RoutedEventArgs e)
+        {
+            ProductClick("cola");
+        }
+
+        private void btnChips_Click(object sender, RoutedEventArgs e)
+        {
+            ProductClick("chips");
+        }
+
+        private void btnCandy_Click(object sender, RoutedEventArgs e)
+        {
+            ProductClick("candy"); 
+        }
+
+        public void ProductClick(string productString)
+        {
+            int index = transaction.Products.FindIndex(x => x.Name == productString);
+
+            if (index == -1)
+            {
+                MessageBox.Show("Could not find product.");
+            } else
+            {
+                bool success = transaction.ProductVended(transaction.Products[index]);
+            }
+        }
+
 
     }
 }
