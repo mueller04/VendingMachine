@@ -10,8 +10,6 @@ using VendingMachine;
 namespace VendingMachine.BLL.Test
 {
 
-   
-
     [TestFixture]
     public class VendingMachineTests
     {
@@ -46,14 +44,5 @@ namespace VendingMachine.BLL.Test
                 Assert.AreEqual("Not a valid coin", e.Message);
 	        }
         }
-
-        [Test]
-        public void WhenProductSelectedAndBalanceHighEnoughVend()
-        {
-            Transaction transaction = new Transaction();
-            transaction.DisplayTotal = .70M;
-            Assert.AreEqual(true, transaction.ProductVended(transaction.Products[2], transaction.DisplayTotal));
-        }
-
     }
 }
