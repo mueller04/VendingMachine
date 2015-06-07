@@ -97,9 +97,6 @@ namespace VendingMachine
                 txtDisplay.Text = message.ToString();
         }
 
-
-
-
         private void UpdateReturnTotal()
         {
             transaction.AddToReturnTotal(.01M);
@@ -141,7 +138,14 @@ namespace VendingMachine
                 MessageBox.Show("Could not find product.");
             } else
             {
-                if (transaction.ProductVended(transaction.Products[index])) UpdateDisplayTotal("THANK YOU");
+                if (transaction.ProductVended(transaction.Products[index]))
+                {
+                    UpdateDisplayTotal("THANK YOU");
+                } else
+                {
+                    string message = ("PRICE " + transaction.Products[index].Price.ToString("C"));
+                    UpdateDisplayTotal(message);
+                }
             }
         }
 
