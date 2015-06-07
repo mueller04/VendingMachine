@@ -92,7 +92,7 @@ namespace VendingMachine
             }
         }
 
-        private void UpdateDisplayTotal(string message, int delay)
+        private void UpdateDisplayTotal(string message)
         {
                 txtDisplay.Text = message.ToString();
         }
@@ -141,7 +141,7 @@ namespace VendingMachine
                 MessageBox.Show("Could not find product.");
             } else
             {
-                if (transaction.ProductVended(transaction.Products[index])) UpdateDisplayTotal("THANK YOU", 1000);
+                if (transaction.ProductVended(transaction.Products[index])) UpdateDisplayTotal("THANK YOU");
             }
         }
 
@@ -152,7 +152,15 @@ namespace VendingMachine
 
         public void ResetDisplay()
         {
-            txtDisplay.Text = "INSERT COIN";
+            if (transaction.DisplayTotal != 0)
+            {
+                txtDisplay.Text = transaction.DisplayTotal.ToString("C");
+            }
+            else
+            {
+                txtDisplay.Text = "INSERT COIN";
+            }
+            
         }
 
 
