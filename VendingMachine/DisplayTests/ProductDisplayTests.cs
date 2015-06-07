@@ -42,5 +42,15 @@ namespace VendingMachine.DisplayTests
             Assert.AreEqual("THANK YOU", window.txtDisplay.Text);
         }
 
+        [Test]
+        [RequiresSTA]
+        public void ResetDisplayUI()
+        {
+            MainWindow window = new MainWindow();
+            window.txtDisplay.Text = "$2.00";
+            window.ResetDisplay();
+            Assert.AreEqual("INSERT COIN", window.txtDisplay.Text);
+        }
+
     }
 }

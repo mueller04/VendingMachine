@@ -3,14 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <ListBox x:Name="lstInsertCoin" HorizontalAlignment="Left" Height="79" Margin="17,45,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ListBox_SelectionChanged"/>
-        <Button x:Name="Insert_Coin" Content="Insert Coin" HorizontalAlignment="Left" Margin="17,129,0,0" VerticalAlignment="Top" Width="120" Click="InsertCoin_Click"/>
-        <TextBox x:Name="txtDisplay" HorizontalAlignment="Left" Height="23" Margin="17,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        <TextBox x:Name="txtCoinReturn" HorizontalAlignment="Left" Height="23" Margin="17,233,0,0" TextWrapping="Wrap" Text="Coin Return Slot" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="CoinReturnbtn" Content="Pickup Change" HorizontalAlignment="Left" Margin="17,270,0,0" VerticalAlignment="Top" Width="120" Click="CoinReturnbtn_Click"/>
-        <Button x:Name="btnCola" Content="cola $1.00" HorizontalAlignment="Left" Margin="188,45,0,0" VerticalAlignment="Top" Width="75" Height="60" IsCancel="True" Click="btnCola_Click"/>
-        <Button x:Name="btnCandy" Content="candy $0.65" HorizontalAlignment="Left" Margin="398,45,0,0" VerticalAlignment="Top" Width="75" Height="60" Click="btnCandy_Click"/>
-        <Button x:Name="btnChips" Content="chips $0.50" HorizontalAlignment="Left" Margin="292,45,0,0" VerticalAlignment="Top" Width="75" Height="60" IsDefault="True" Click="btnChips_Click"/>
+        <ListBox x:Name="lstInsertCoin" HorizontalAlignment="Left" Height="79" Margin="17,57,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ListBox_SelectionChanged"/>
+        <Button x:Name="Insert_Coin" Content="Insert Coin" HorizontalAlignment="Left" Margin="17,141,0,0" VerticalAlignment="Top" Width="120" Click="InsertCoin_Click"/>
+        <TextBox x:Name="txtDisplay" HorizontalAlignment="Left" Height="23" Margin="17,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+        <TextBox x:Name="txtCoinReturn" HorizontalAlignment="Left" Height="23" Margin="17,228,0,0" TextWrapping="Wrap" Text="Coin Return Slot" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="CoinReturnbtn" Content="Pickup Change" HorizontalAlignment="Left" Margin="17,265,0,0" VerticalAlignment="Top" Width="120" Click="CoinReturnbtn_Click"/>
+        <Button x:Name="btnCola" Content="cola $1.00" HorizontalAlignment="Left" Margin="188,68,0,0" VerticalAlignment="Top" Width="88" Height="60" IsCancel="True" Click="btnCola_Click"/>
+        <Button x:Name="btnCandy" Content="candy $0.65" HorizontalAlignment="Left" Margin="398,68,0,0" VerticalAlignment="Top" Width="92" Height="60" Click="btnCandy_Click"/>
+        <Button x:Name="btnChips" Content="chips $0.50" HorizontalAlignment="Left" Margin="292,68,0,0" VerticalAlignment="Top" Width="88" Height="60" IsDefault="True" Click="btnChips_Click"/>
+        <Button x:Name="btnResetDisplay" Content="Reset Display" HorizontalAlignment="Left" Margin="188,23,0,0" VerticalAlignment="Top" Width="88" Click="btnResetDisplay_Click"/>
 
     </Grid>
 </Window>
