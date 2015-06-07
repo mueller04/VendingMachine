@@ -140,16 +140,12 @@ namespace VendingMachine
                 MessageBox.Show("Could not find product.");
             } else
             {
-                if (transaction.ProductVended(transaction.Products[index]))
-                {
-                    UpdateDisplayTotal("THANK YOU");
+                string displayMessage = transaction.ProductVended(transaction.Products[index]);
+
+                UpdateDisplayTotal(displayMessage);
                     UpdateReturnTotal(0);
-                } else
-                {
-                    string message = ("PRICE " + transaction.Products[index].Price.ToString("C"));
-                    UpdateDisplayTotal(message);
-                }
             }
+
         }
 
         private void btnResetDisplay_Click(object sender, RoutedEventArgs e)

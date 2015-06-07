@@ -53,20 +53,32 @@ namespace VendingMachine.BLL
             ReturnTotal -= price;
         }
 
-        public bool ProductVended(Product product)
+        public string ProductVended(Product product)
         {
-            if (product.Price > DisplayTotal)
+            if (product.OnHand <= 0)
             {
-                return false;
-            } else if (product.OnHand <= 0)
+                return "SOLD OUT";
+            }
+            else if (product.Price > DisplayTotal)
             {
-                return false;
-            } else
+                return ("PRICE " + product.Price.ToString("C"));
+            }
+            else
             {         
                 ProcessChange(product);
                 ProcessInventory(product);
-                return true; 
+                return "THANK YOU";
             }
+
+
+
+
+
+
+
+
+
+
 
 
 
