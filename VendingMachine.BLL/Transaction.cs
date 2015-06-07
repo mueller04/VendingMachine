@@ -74,19 +74,6 @@ namespace VendingMachine.BLL
                 ProcessInventory(product);
                 return "THANK YOU";
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
 
         private void ProcessChange(Product product)

@@ -68,5 +68,15 @@ namespace VendingMachine.BLL.Test
             Assert.AreEqual("EXACT CHANGE ONLY", transaction.ProductVended(transaction.Products[1]));
         }
 
+        [Test]
+        public void WhenExactChangeFlagIsFalseShowMakeChange()
+        {
+            Transaction transaction = new Transaction();
+            transaction.ExactChangeEnabled = false;
+            transaction.DisplayTotal = .55M;
+            Assert.AreEqual("THANK YOU", transaction.ProductVended(transaction.Products[1]));
+            Assert.AreEqual(.05M, transaction.ReturnTotal);
+        }
+
     }
 }
