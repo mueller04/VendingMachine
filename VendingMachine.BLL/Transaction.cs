@@ -10,6 +10,7 @@ namespace VendingMachine.BLL
     {
         public decimal DisplayTotal { get; set; }
         public decimal ReturnTotal { get; set; }
+        public bool ExactChangeEnabled { get; set; }
 
         public List<Product> Products = new List<Product>()
         {
@@ -62,6 +63,10 @@ namespace VendingMachine.BLL
             else if (product.Price > DisplayTotal)
             {
                 return ("PRICE " + product.Price.ToString("C"));
+            }
+            else if (ExactChangeEnabled && product.Price != DisplayTotal)
+            {
+                return "EXACT CHANGE ONLY";
             }
             else
             {         

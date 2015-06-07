@@ -29,7 +29,7 @@ namespace VendingMachine
             InitializeComponent();
             transaction = new Transaction();
 
-            txtDisplay.Text = "INSERT COIN";
+            InsertCoinDisplayText();
             txtCoinReturn.Text = "Coin Return Slot";
 
             lstInsertCoin.Items.Add("Penny");
@@ -84,7 +84,7 @@ namespace VendingMachine
         {
             if (message == "$0.00")
             {
-                txtDisplay.Text = "INSERT COIN";
+                InsertCoinDisplayText();
             }
             else
             {
@@ -161,11 +161,26 @@ namespace VendingMachine
             }
             else
             {
-                txtDisplay.Text = "INSERT COIN";
+                InsertCoinDisplayText();
             }
             
         }
 
+        private void InsertCoinDisplayText()
+        {
+            txtDisplay.Text = "INSERT COIN";
+        }
 
+        private void chkExactChange_Checked(object sender, RoutedEventArgs e)
+        {
+            if (chkExactChange.IsChecked == true)
+            {
+                transaction.ExactChangeEnabled = true;
+            }
+            else if (chkExactChange.IsChecked == false)
+            {
+                transaction.ExactChangeEnabled = false;
+            }
+        }
     }
 }

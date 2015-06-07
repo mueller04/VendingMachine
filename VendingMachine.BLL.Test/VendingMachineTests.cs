@@ -44,5 +44,6 @@ namespace VendingMachine.BLL.Test
                 Assert.AreEqual("Not a valid coin", e.Message);
 	        }
         }
+
     }
 }

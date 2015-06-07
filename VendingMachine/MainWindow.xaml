@@ -12,6 +12,7 @@
         <Button x:Name="btnCandy" Content="candy $0.65" HorizontalAlignment="Left" Margin="398,68,0,0" VerticalAlignment="Top" Width="92" Height="60" Click="btnCandy_Click"/>
         <Button x:Name="btnChips" Content="chips $0.50" HorizontalAlignment="Left" Margin="292,68,0,0" VerticalAlignment="Top" Width="88" Height="60" IsDefault="True" Click="btnChips_Click"/>
         <Button x:Name="btnResetDisplay" Content="Reset Display" HorizontalAlignment="Left" Margin="188,23,0,0" VerticalAlignment="Top" Width="88" Click="btnResetDisplay_Click"/>
+        <CheckBox x:Name="chkExactChange" Content="Set Exact Change Mode" HorizontalAlignment="Left" Margin="347,265,0,0" VerticalAlignment="Top" Click="chkExactChange_Checked"/>
 
     </Grid>
 </Window>
