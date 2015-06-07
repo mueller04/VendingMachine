@@ -40,7 +40,6 @@ namespace VendingMachine
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
         }
 
         private void InsertCoin_Click(object sender, RoutedEventArgs e)
@@ -76,8 +75,8 @@ namespace VendingMachine
                 UpdateReturnTotal();
             }
 
-            transaction.DisplayTotal.Add(coinValue);
-            string sum = transaction.DisplayTotal.Sum().ToString("C");
+            transaction.AddToDisplayTotal(coinValue);
+            string sum = transaction.DisplayTotal.ToString("C");
             UpdateDisplayTotal(sum);
         }
 
@@ -95,8 +94,8 @@ namespace VendingMachine
 
         private void UpdateReturnTotal()
         {
-            transaction.ReturnTotal.Add(1);
-            txtCoinReturn.Text = String.Format("{0} Coins", transaction.ReturnTotal.Sum().ToString());
+            transaction.AddToReturnTotal(.01M);
+            txtCoinReturn.Text = transaction.ReturnTotal.ToString("C");
         }
 
         private void CoinReturnbtn_Click(object sender, RoutedEventArgs e)
@@ -107,7 +106,7 @@ namespace VendingMachine
         public void PickupChangeClick()
         {
             txtCoinReturn.Text = "Coin Return Slot";
-            transaction.ReturnTotal.Clear();
+            transaction.ReturnTotal = 0M;
         }
 
 

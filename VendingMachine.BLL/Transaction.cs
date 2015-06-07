@@ -8,13 +8,64 @@ namespace VendingMachine.BLL
 {
     public class Transaction
     {
-        public List<decimal> DisplayTotal { get; set; }
-        public List<int> ReturnTotal { get; set; }
+        public decimal DisplayTotal { get; set; }
+        public decimal ReturnTotal { get; set; }
 
-        public Transaction()
+        public List<Product> Products = new List<Product>()
         {
-            DisplayTotal = new List<decimal>();
-            ReturnTotal = new List<int>();
+            new Product()
+            {
+                Name = "cola",
+                Price = 1.00M,
+                OnHand = 5
+            },
+            new Product()
+            {
+                Name = "chips",
+                Price = .50M,
+                OnHand = 5
+            },
+            new Product()
+            {
+                Name = "candy",
+                Price = .65M,
+                OnHand = 5
+            }
+        };
+
+        public void AddToDisplayTotal(decimal price)
+        {
+            DisplayTotal += price;
+        }
+
+        public void SubtractFromDisplayTotal(decimal price)
+        {
+            DisplayTotal -= price;
+        }
+
+        public void AddToReturnTotal(decimal price)
+        {
+            ReturnTotal += price;
+        }
+
+        public void SubtractFromReturnTotal(decimal price)
+        {
+            ReturnTotal -= price;
+        }
+
+        public bool ProductVended(Product product, decimal balance)
+        {
+            if (product.Price < balance)
+            {
+                DisplayTotal -= balance;
+                product.OnHand--;
+                return true;
+            } else
+            {
+                return false;
+            }
+
+
         }
         
     }
