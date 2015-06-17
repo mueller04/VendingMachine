@@ -21,13 +21,22 @@ namespace VendingMachine
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Transaction transaction { get; set; }
-        
+  
 
-        public MainWindow()
+        private ITransaction _transaction;
+
+        public ITransaction Transaction
+        {
+            get { return _transaction; }
+            set { _transaction = value; }
+        }
+
+
+
+        public MainWindow(ITransaction transaction)
         {
             InitializeComponent();
-            transaction = new Transaction();
+            Transaction = transaction;
 
             InsertCoinDisplayText();
             txtCoinReturn.Text = "Coin Return Slot";
@@ -36,6 +45,11 @@ namespace VendingMachine
             lstInsertCoin.Items.Add("Nickel");
             lstInsertCoin.Items.Add("Dime");
             lstInsertCoin.Items.Add("Quarter");
+        }
+
+        public void InitializeTransaction(ITransaction transaction)
+        {
+            Transaction = transaction;
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -59,8 +73,8 @@ namespace VendingMachine
                 UpdateReturnTotal(.01M);
             } else
             {
-                transaction.AddToDisplayTotal(coinValue);
-                string sum = transaction.DisplayTotal.ToString("C");
+                Transaction.AddToDisplayTotal(coinValue);
+                string sum = Transaction.DisplayTotal.ToString("C");
                 CoinUpdateDisplayTotal(sum);
             }
         }
@@ -114,8 +128,8 @@ namespace VendingMachine
 
         private void UpdateReturnTotal(decimal add)
         {
-            transaction.AddToReturnTotal(add);
-            txtCoinReturn.Text = transaction.ReturnTotal.ToString("C");
+            Transaction.AddToReturnTotal(add);
+            txtCoinReturn.Text = Transaction.ReturnTotal.ToString("C");
         }
 
         private void CoinReturnbtn_Click(object sender, RoutedEventArgs e)
@@ -126,8 +140,8 @@ namespace VendingMachine
         public void PickupChangeClick()
         {
             txtCoinReturn.Text = "Coin Return Slot";
-            transaction.ReturnTotal = 0M;
-            transaction.DisplayTotal = 0M;
+            Transaction.ReturnTotal = 0M;
+            Transaction.DisplayTotal = 0M;
             ResetDisplay();
         }
 
@@ -148,14 +162,14 @@ namespace VendingMachine
 
         public void ProductClick(string productString)
         {
-            int index = transaction.Products.FindIndex(x => x.Name == productString);
+            int index = Transaction.Products.FindIndex(x => x.Name == productString);
 
             if (index == -1)
             {
                 MessageBox.Show("Could not find product.");
             } else
             {
-                string displayMessage = transaction.ProductVended(transaction.Products[index]);
+                string displayMessage = Transaction.ProductVended(Transaction.Products[index]);
 
                 UpdateDisplayTotal(displayMessage);
                     UpdateReturnTotal(0);
@@ -170,9 +184,9 @@ namespace VendingMachine
 
         public void ResetDisplay()
         {
-            if (transaction.DisplayTotal != 0)
+            if (Transaction.DisplayTotal != 0)
             {
-                txtDisplay.Text = transaction.DisplayTotal.ToString("C");
+                txtDisplay.Text = Transaction.DisplayTotal.ToString("C");
             }
             else
             {
@@ -190,11 +204,11 @@ namespace VendingMachine
         {
             if (chkExactChange.IsChecked == true)
             {
-                transaction.ExactChangeEnabled = true;
+                Transaction.ExactChangeEnabled = true;
             }
             else if (chkExactChange.IsChecked == false)
             {
-                transaction.ExactChangeEnabled = false;
+                Transaction.ExactChangeEnabled = false;
             }
         }
     }

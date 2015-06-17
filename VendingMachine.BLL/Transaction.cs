@@ -12,27 +12,33 @@ namespace VendingMachine.BLL
         public decimal ReturnTotal { get; set; }
         public bool ExactChangeEnabled { get; set; }
 
-        public List<Product> Products = new List<Product>()
+        public List<Product> Products { get; set; }
+        
+        public Transaction()
         {
-            new Product()
+            Products = new List<Product>()
             {
-                Name = "cola",
-                Price = 1.00M,
-                OnHand = 5
-            },
-            new Product()
-            {
-                Name = "chips",
-                Price = .50M,
-                OnHand = 5
-            },
-            new Product()
-            {
-                Name = "candy",
-                Price = .65M,
-                OnHand = 0
-            }
-        };
+                new Product()
+                {
+                    Name = "cola",
+                    Price = 1.00M,
+                    OnHand = 5
+                },
+                new Product()
+                {
+                    Name = "chips",
+                    Price = .50M,
+                    OnHand = 5
+                },
+                new Product()
+                {
+                    Name = "candy",
+                    Price = .65M,
+                    OnHand = 0
+                }
+            };
+        }
+
 
         public void AddToDisplayTotal(decimal price)
         {

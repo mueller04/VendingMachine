@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VendingMachine.BLL;
 
 namespace VendingMachine.DisplayTests
 {
@@ -14,31 +15,36 @@ namespace VendingMachine.DisplayTests
         [RequiresSTA]
         public void WhenBalanceIsHighEnoughVendProductUI()
         {
-            MainWindow window = new MainWindow();
-            window.transaction.DisplayTotal = 1.2M;
+            
+            Transaction transaction = new Transaction();
+            MainWindow window = new MainWindow(transaction);
+            window.InitializeTransaction(transaction);
+            window.Transaction.DisplayTotal = 1.2M;
             window.ProductClick("cola");
-            Assert.AreEqual(0, window.transaction.DisplayTotal);
-            Assert.AreEqual(.2M, window.transaction.ReturnTotal);
-            Assert.AreEqual(4, window.transaction.Products[0].OnHand);
+            Assert.AreEqual(0, window.Transaction.DisplayTotal);
+            Assert.AreEqual(.2M, window.Transaction.ReturnTotal);
+            Assert.AreEqual(4, window.Transaction.Products[0].OnHand);
         }
 
         [Test]
         [RequiresSTA]
         public void WhenBalanceIsTooLowFailUpdateUI()
         {
-            MainWindow window = new MainWindow();
-            window.transaction.DisplayTotal = .9M;
+            Transaction transaction = new Transaction();
+            MainWindow window = new MainWindow(transaction);
+            window.Transaction.DisplayTotal = .9M;
             window.ProductClick("cola");
-            Assert.AreEqual(.9M, window.transaction.DisplayTotal);
-            Assert.AreEqual(5, window.transaction.Products[0].OnHand);
+            Assert.AreEqual(.9M, window.Transaction.DisplayTotal);
+            Assert.AreEqual(5, window.Transaction.Products[0].OnHand);
         }
 
         [Test]
         [RequiresSTA]
         public void WhenBalanceHighEnoughDisplayTHANKYOUUI()
         {
-            MainWindow window = new MainWindow();
-            window.transaction.DisplayTotal = 1.2M;
+            Transaction transaction = new Transaction();
+            MainWindow window = new MainWindow(transaction);
+            window.Transaction.DisplayTotal = 1.2M;
             window.ProductClick("cola");
             Assert.AreEqual("THANK YOU", window.txtDisplay.Text);
         }
@@ -47,7 +53,8 @@ namespace VendingMachine.DisplayTests
         [RequiresSTA]
         public void ResetDisplayUI()
         {
-            MainWindow window = new MainWindow();
+            Transaction transaction = new Transaction();
+            MainWindow window = new MainWindow(transaction);
             window.txtDisplay.Text = "$2.00";
             window.ResetDisplay();
             Assert.AreEqual("INSERT COIN", window.txtDisplay.Text);
@@ -57,8 +64,9 @@ namespace VendingMachine.DisplayTests
         [RequiresSTA]
         public void ResetDisplayWithBALANCEUI()
         {
-            MainWindow window = new MainWindow();
-            window.transaction.DisplayTotal = 1.2M;
+            Transaction transaction = new Transaction();
+            MainWindow window = new MainWindow(transaction);
+            window.Transaction.DisplayTotal = 1.2M;
             window.ProductClick("cola");
             window.ResetDisplay();
             Assert.AreEqual("INSERT COIN", window.txtDisplay.Text);
@@ -68,8 +76,9 @@ namespace VendingMachine.DisplayTests
         [RequiresSTA]
         public void WhenBalanceIsTooLowDisplayPRICEUI()
         {
-            MainWindow window = new MainWindow();
-            window.transaction.DisplayTotal = .9M;
+            Transaction transaction = new Transaction();
+            MainWindow window = new MainWindow(transaction);
+            window.Transaction.DisplayTotal = .9M;
             window.ProductClick("cola");
             Assert.AreEqual("PRICE $1.00", window.txtDisplay.Text);
         }
@@ -78,8 +87,9 @@ namespace VendingMachine.DisplayTests
         [RequiresSTA]
         public void WhenProductIsChosenChangeIsGivenUI()
         {
-            MainWindow window = new MainWindow();
-            window.transaction.DisplayTotal = 1.4M;
+            Transaction transaction = new Transaction();
+            MainWindow window = new MainWindow(transaction);
+            window.Transaction.DisplayTotal = 1.4M;
             window.ProductClick("cola");
             Assert.AreEqual("$0.40", window.txtCoinReturn.Text);
         }
@@ -88,8 +98,9 @@ namespace VendingMachine.DisplayTests
         [RequiresSTA]
         public void WhenSoldOutProductIsChosenThenResetDisplayCurrentBalanceUI()
         {
-            MainWindow window = new MainWindow();
-            window.transaction.DisplayTotal = 1.5M;
+            Transaction transaction = new Transaction();
+            MainWindow window = new MainWindow(transaction);
+            window.Transaction.DisplayTotal = 1.5M;
             window.ProductClick("candy");
             window.ResetDisplay();
             Assert.AreEqual("$1.50", window.txtDisplay.Text);
@@ -99,7 +110,8 @@ namespace VendingMachine.DisplayTests
         [RequiresSTA]
         public void WhenSoldOutProductIsChosenThenResetDisplayINSERTCOINUI()
         {
-            MainWindow window = new MainWindow();
+            Transaction transaction = new Transaction();
+            MainWindow window = new MainWindow(transaction);
             window.ProductClick("candy");
             window.ResetDisplay();
             Assert.AreEqual("INSERT COIN", window.txtDisplay.Text);
