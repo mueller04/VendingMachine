@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VendingMachine.BLL
 {
-    public class Transaction
+    public class Transaction : ITransaction
     {
         public decimal DisplayTotal { get; set; }
         public decimal ReturnTotal { get; set; }
@@ -76,7 +76,7 @@ namespace VendingMachine.BLL
             }
         }
 
-        private void ProcessChange(Product product)
+        public void ProcessChange(Product product)
         {
             DisplayTotal -= product.Price;
             ReturnTotal += DisplayTotal;
@@ -84,7 +84,7 @@ namespace VendingMachine.BLL
             
         }
 
-        private void ProcessInventory(Product product)
+        public void ProcessInventory(Product product)
         {
             product.OnHand--;
         }
