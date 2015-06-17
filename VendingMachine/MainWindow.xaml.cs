@@ -47,10 +47,6 @@ namespace VendingMachine
             lstInsertCoin.Items.Add("Quarter");
         }
 
-        public void InitializeTransaction(ITransaction transaction)
-        {
-            Transaction = transaction;
-        }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

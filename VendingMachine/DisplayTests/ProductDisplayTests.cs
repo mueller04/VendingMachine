@@ -18,7 +18,6 @@ namespace VendingMachine.DisplayTests
             
             Transaction transaction = new Transaction();
             MainWindow window = new MainWindow(transaction);
-            window.InitializeTransaction(transaction);
             window.Transaction.DisplayTotal = 1.2M;
             window.ProductClick("cola");
             Assert.AreEqual(0, window.Transaction.DisplayTotal);
