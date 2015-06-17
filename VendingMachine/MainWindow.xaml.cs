@@ -51,33 +51,48 @@ namespace VendingMachine
         //simulate the reading of a coins size and weight
         public void InsertCoinClick()
         {
+            decimal coinValue = CalculateCoinValue();
+
+            if (coinValue == 0M)
+            {
+                MessageBox.Show("Invalid Coin");
+                UpdateReturnTotal(.01M);
+            } else
+            {
+                transaction.AddToDisplayTotal(coinValue);
+                string sum = transaction.DisplayTotal.ToString("C");
+                CoinUpdateDisplayTotal(sum);
+            }
+        }
+
+        private decimal CalculateCoinValue()
+        {
             decimal coinValue = 0M;
 
             if (lstInsertCoin.SelectedItem == null)
             {
                 MessageBox.Show("Select a coin then press Insert Coin");
+                return coinValue;
             }
             else if (lstInsertCoin.SelectedItem.ToString() == "Nickel")
             {
                 coinValue = Coin.DetermineCoin(CoinSizeEnum.micrometer21210, CoinWeightEnum.milligram5000);
+                return coinValue;
             }
             else if (lstInsertCoin.SelectedItem.ToString() == "Dime")
             {
                 coinValue = Coin.DetermineCoin(CoinSizeEnum.mirometer17910, CoinWeightEnum.milligram2268);
+                return coinValue;
             }
             else if (lstInsertCoin.SelectedItem.ToString() == "Quarter")
             {
                 coinValue = Coin.DetermineCoin(CoinSizeEnum.micrometer24260, CoinWeightEnum.milligram5670);
+                return coinValue;
             }
             else
             {
-                MessageBox.Show("Invalid Coin");
-                UpdateReturnTotal(.01M);
+                return coinValue;
             }
-
-            transaction.AddToDisplayTotal(coinValue);
-            string sum = transaction.DisplayTotal.ToString("C");
-            CoinUpdateDisplayTotal(sum);
         }
 
         private void CoinUpdateDisplayTotal(string message)
