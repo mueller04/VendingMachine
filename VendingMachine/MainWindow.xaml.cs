@@ -172,7 +172,6 @@ namespace VendingMachine
             }
 
         }
-
         private void btnResetDisplay_Click(object sender, RoutedEventArgs e)
         {
             ResetDisplay();

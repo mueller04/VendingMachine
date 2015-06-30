@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Moq;
 
 namespace VendingMachine.BLL.Test
 {
@@ -26,6 +27,7 @@ namespace VendingMachine.BLL.Test
         public void WhenProductSelectedAndBalanceTooLow()
         {
             Transaction transaction = new Transaction();
+
             transaction.DisplayTotal = .40M;
             Assert.AreEqual("PRICE $0.50", transaction.ProductVended(transaction.Products[1]));
             Assert.AreEqual(.40M, transaction.DisplayTotal);
